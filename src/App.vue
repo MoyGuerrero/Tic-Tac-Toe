@@ -42,8 +42,13 @@ const winner = () => {
         origin: { y: 0.6 }
       });
       alert(`Winner is ${sendShift.value[a]}`);
-
+      return
     }
+  }
+
+  if (sendShift.value.every(cell => cell !== '')) {
+    alert("¡Es un empate!");
+    isDisabledGame.value = true;
   }
 }
 
