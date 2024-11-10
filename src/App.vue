@@ -6,7 +6,7 @@ import ButtonCat from './components/ButtonCat.vue';
 
 const turno = ref<string>('');
 const sendShift = ref<string[]>(['', '', '', '', '', '', '', '', ''])
-const quantityButtons = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const quantityButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 const isDisabled = ref<boolean>(false);
 const isDisabledGame = ref<boolean>(false)
 
@@ -20,14 +20,14 @@ const changeShift = (): string => turno.value = turno.value.includes('X') ? 'O' 
 const winner = () => {
 
   const combinationsWin = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7]
+    [0, 4, 8],
+    [2, 4, 6]
   ]
 
   for (const winner of combinationsWin) {
@@ -84,7 +84,8 @@ const restart = () => {
   </div>
   <div class="grid grid-cols-3 gap-4 border-2 dark:border-gray-600 p-4 rounded-lg">
     <div class="w-48 h-48 border-box rounded-lg" v-for="quantity in quantityButtons" :key="quantity">
-      <ButtonCat :position="quantity" :is-disabled="isDisabledGame" :value="sendShift[quantity]" @click="selectShift" />
+      <ButtonCat :position="quantity" :is-disabled="isDisabledGame" :value="sendShift[quantity]"
+        @click="selectShift" />
     </div>
   </div>
 </template>
